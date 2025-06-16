@@ -1,70 +1,123 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🗳️ Decentralized Online Voting System using Blockchain
 
-### `npm start`
+A secure, transparent, and tamper-proof **online voting platform** built on Ethereum blockchain using **Solidity** for smart contracts and **React** for frontend UI.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> ✅ Ideal for colleges, small organizations, or events seeking fair digital elections.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+### 🔐 Key Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **🧾 Voter Authentication**: Each wallet can vote only once.
+* **🏛️ Candidate Management**: Add and view multiple candidates with party name.
+* **⏳ Voting Window**: Voting is allowed only between `votingStart` and `votingEnd` timestamps.
+* **📊 Real-Time Results**: Transparent vote count updates after every transaction.
+* **🚫 Tamper-Proof**: Once deployed, no one can alter votes or candidate list.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🧱 Smart Contract (Solidity)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```solidity
+struct Candidate {
+    uint id;
+    string name;
+    string party;
+    uint voteCount;
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+mapping (uint => Candidate) public candidates;
+mapping (address => bool) public voters;
 
-### `npm run eject`
+function vote(uint candidateID) public {
+    require((votingStart <= now) && (votingEnd > now));
+    require(!voters[msg.sender]);
+    voters[msg.sender] = true;
+    candidates[candidateID].voteCount++;
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+✔️ Simple and gas-efficient voting logic
+🛡️ Prevents double voting
+🕒 Enforces voting deadlines
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🖼️ Screenshots (Frontend - React + Ethers.js)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Dashboard                          | Voting Panel                 | Results                        |
+| ---------------------------------- | ---------------------------- | ------------------------------ |
+| ![dashboard](s1.png) | ![voting](s2.png) | ![results](s3.png) |
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🧰 Tech Stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Layer          | Tech                               |
+| -------------- | ---------------------------------- |
+| Smart Contract | Solidity, Remix, MetaMask          |
+| Frontend       | React.js, TailwindCSS, Ethers.js   |
+| Blockchain     | Ethereum (tested on local/testnet) |
+| Hosting        | GitHub Pages / Vercel *(optional)* |
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 🚀 Getting Started (Local Setup)
 
-### Analyzing the Bundle Size
+1. **Clone the repository**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+git clone https://github.com/your-username/decentralized-voting.git
+cd decentralized-voting
+```
 
-### Making a Progressive Web App
+2. **Install dependencies**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm install
+```
 
-### Advanced Configuration
+3. **Compile and deploy smart contract** (via Remix, Hardhat, or Truffle)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. **Update contract ABI & address** in your React app
 
-### Deployment
+5. **Run the frontend**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm start
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 🧠 Learning Outcomes
+
+* Built a secure decentralized application (dApp)
+* Understood Ethereum smart contracts and Web3 interactions
+* Used MetaMask and wallets for real-time voting validation
+* Developed React-based dashboard for voters and organizers
+
+---
+
+### 💡 Future Enhancements
+
+* Role-based admin panel for adding candidates
+* Wallet-based voter whitelist/blacklist
+* IPFS for immutable vote receipts
+* Mobile compatibility
+
+---
+
+### 👨‍💻 Author
+
+**Pranav Ram**
+🌐 [www.chennaisunday.com](https://www.chennaisunday.com)
+📬 [pspranavram2005@gmail.com](mailto:pspranavram2005@gmail.com)
+📽️ YouTube: *Final Year Project Tutorials*
+
+---
+
+Let me know if you want this adapted into a GitHub-ready format (with assets, markdown file), or combined with your existing codebase for live deployment.
