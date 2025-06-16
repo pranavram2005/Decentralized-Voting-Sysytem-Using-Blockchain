@@ -114,10 +114,5 @@ npm start
 ### 👨‍💻 Author
 
 **Pranav Ram**
-🌐 [www.chennaisunday.com](https://www.chennaisunday.com)
 📬 [pspranavram2005@gmail.com](mailto:pspranavram2005@gmail.com)
-📽️ YouTube: *Final Year Project Tutorials*
-
 ---
-
-Let me know if you want this adapted into a GitHub-ready format (with assets, markdown file), or combined with your existing codebase for live deployment.
